@@ -66,6 +66,11 @@ def create_shipment(data: dict, request: Request):
     return shipments[new_id]
 
 
+@app.get("/shipment/{field}")
+def get_sipment_field(field: str, id: int) -> dict[str, str]:
+    return {field: shipments[str(id)][field]}
+
+
 @app.get("/scalar", include_in_schema=False)
 def get_scalar_docs():
     return get_scalar_api_reference(
